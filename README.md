@@ -1,12 +1,12 @@
-# 🌐CharaWik API 
- 
-CharaWik.net is a personal blog style wikipedia page for artists to keep track of their original characters.
+# 🌐CharaWik API
+
+CharaWik is a personal blog style wikipedia page for artists to keep track of their original characters.
 
 ### GitHub Link
 
-
 ## How to Use
-### Download & Run the Project | For Devs Exploring or Using the API for Personal Projects
+
+### Download & Run the Project | For Devs Exploring or Using the API for Personal characters
 
 1.  Clone the repository or Download the ZIP file and extract the files.
 2.  Open the file in Visual Studio Code.
@@ -26,7 +26,7 @@ CharaWik.net is a personal blog style wikipedia page for artists to keep track o
 
 7.  You should see a message appear. Follow the link such as: "http://localhost:3000/" or "http://localhost:3001/" (when no port defined in .env)
 
-From here, you can test creating a new user or logging in as an existing user using software/Visual Studio extension such as Thunderclient or Postman or a simlar software/Visual Studio extension. You can also create projects and tasks.
+From here, you can test creating a new user or logging in as an existing user using software/Visual Studio extension such as Thunderclient or Postman or a simlar software/Visual Studio extension. You can also create characters and activities.
 
 ### Endpoints | For Devs Obtaining Data from CharaWik
 
@@ -42,7 +42,9 @@ From here, you can test creating a new user or logging in as an existing user us
 /api/characters/:characterId/activities/:activityId //Get/View A specific activity by ID. Must be the owner of the character the activity belongs to.
 /api/activities/:activityId  //Put/Update & Delete A specific activity by ID. Must be the owner of the character the activity belongs to.
 ```
------
+
+---
+
 ### Account Creation - POST Route Format -
 
 To create a user using JSON body, following this format:
@@ -67,16 +69,24 @@ To login a user using JSON body, following this format:
 }
 
 ```
+
 ---
+
 ### Character CRUD - POST/GET/PUT/DELETE Formats -
 
 Using the JSON body, **Create** a specific character of a user using this format:
+_age, likes, and dislike are not required and can be left out. The actual image string will be processed in the frontend for storage. It will look very different that this example. As it will take the image and turn store it Base64 format inside MongoDB._
 
 ```JSON
 
 {
     "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
-    ...
+    "profileImage": "imgStringtoBase64",
+    "name": "Strongby Strawbs",
+    "age": 28,
+    "biography": "The heir to the Strawbs Strawberry Fields Fortune. But all she wants is to do leg day. Find her in the strawberry bushes? No, find her in the gym pumping iron!",
+    "likes": ["red", "strawberries", "leg day"],
+    "dislikes": ["push ups", "grape jelly"]
 }
 
 ```
@@ -85,7 +95,7 @@ Using the JSON body, **Create** a specific character of a user using this format
 
 Using the JSON body , **Read** all characters for a user using this format:
 
-_URL example: http://localhost:3000/api/characters
+_URL example: http://localhost:3000/api/characters_
 
 ```JSON
 {
@@ -117,23 +127,31 @@ _URL example: http://localhost:3000/api/characters/7586a0c64c54f659210c9b75_
 //Update Singular Field - Example Format
 {
     "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
-    ...
+    "name": "Shelby Strongby Strawbs"
 }
 
 //Update Multiple - Example Format
     {
         "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
-        ...
+        "likes": ["red", "strawberries", "leg day", "orange juice"],
+        "dislikes": ["push ups", "grape jelly"]
     }
 
 //Update All Simultaneously - Format
     {
         "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
-        ...
+        "profileImage": "img345StringtoBase64",
+        "name": "Shelby Strongby Strawbs",
+        "age": 25,
+        "biography": "The heir to the Strawbs Strawberry Fields Fortune. But all she wants is to do leg day. Find her in the strawberry bushes? No, find her in the gym pumping LEG iron!",
+        "likes": ["red", "strawberries", "leg day, orange juice"],
+        "dislikes": ["push ups", "grape jelly", "dead lifts"]
     }
 
 ```
-------
+
+---
+
 ### Activity CRUD - POST/GET/PUT/DELETE Formats -
 
 Using the JSON body, **Create** a activity post for a specific character using this format:
@@ -144,7 +162,8 @@ _URL example: http://localhost:3000/api/characters/7586a0c64c54f659210c9b75/acti
 
 {
     "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
-    ...
+    "title": "Rebirth",
+    "content": "I was reborn on the fifth phase of the Zereleaus Moon"
 }
 
 ```
@@ -166,7 +185,7 @@ _URL example: http://localhost:3000/api/characters/7586a0c64c54f659210c9b75/acti
 
 Using the JSON body and the request parameters, **Read or Delete** a specific activity post of a character using this format:
 
-_URL example: http://localhost:3000/api/projects/7586a0c64c54f659210c9b75/tasks/553796056d87946c2991526a_
+_URL example: http://localhost:3000/api/characters/7586a0c64c54f659210c9b75/activities/553796056d87946c2991526a_
 
 ```JSON
 {
@@ -185,22 +204,16 @@ _URL example: http://localhost:3000/api/characters/7586a0c64c54f659210c9b75/acti
 //Update Singular Field - Example Format
 {
     "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
-    ...
+    "title": "Rebirth & Redirect"
 }
-
-//Update Multiple - Example Format
-    {
-        "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
-        ...
-    }
 
 //Update All Simultaneously - Format
     {
         "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
-        ...
+        "title": "Rebirth",
+        "content": "I was reborn on the fifth phase of the Zereleaus Moon. My kind are born with able bodies, equivalent to any adult of all races. So was then sent immediately to the workforce encampment by my finders."
     }
 ```
-
 
 _For bodies of type Form-encode, simply make a token, chaaracter details, activity details, username, email, and password with their associated values you determine for testing. You can also place the token into the Auth > Bearer token input area._
 
@@ -209,10 +222,17 @@ _For bodies of type Form-encode, simply make a token, chaaracter details, activi
 **If you Login with Github, you will be redirected to the Github Permissions request page.**
 
 ## My process
+
 1. Directory and File Setup.
 2. Installed NPM. Installed necessary and preferred packages.
 3. Created Database Connection and base route index. Set up and tested Server in Browser.
 4. Reused User Model, Controller, and Authentication from previous project due to same structure.
+5. Testing via Thunderclient and browser.
+6. Created Character Model. Reused and refacorted previous code to create Character routes and controlelr logic.
+7. Testing CRUD capabilties via Thunderclient and browser. Tested authentication to ensure correct users have access.
+8. Created Activity Model. Reused and refacorted previous code to create Activity routes and controlelr logic.
+9. Testing CRUD capabilties via Thunderclient and browser. Tested authentication to ensure correct users have access.
+10. Bug Fixing, Polish, and final Testing in Thunderclient for edgecases and clarity in error messages.
 
 ### Built with
 
@@ -227,7 +247,7 @@ _For bodies of type Form-encode, simply make a token, chaaracter details, activi
 
 ### Useful resources
 
-**PerScholas** 
+**PerScholas** | Modules 12 - 16 | All lessons.
 
 Tishana Trainor
 

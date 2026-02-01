@@ -5,7 +5,7 @@ const getCharacters = async (req, res) => {
         const character = await Character.find({ owner: req.user._id });
         res.json(character);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(400).json({ error: err.message });
     }
 }
 
@@ -49,7 +49,7 @@ const updateCharacter = async (req, res) => {
         }
         res.json([{ message: 'Successfully updated character.' }, { update: character }]);
     } catch (err) {
-        res.status(500).json(err);
+        res.status(400).json(err);
     }
 }
 
@@ -65,7 +65,7 @@ const deleteCharacter = async (req, res) => {
         }
         res.json({ message: 'Character deleted!' });
     } catch (err) {
-        res.status(500).json(err);
+        res.status(400).json(err);
     }
 }
 

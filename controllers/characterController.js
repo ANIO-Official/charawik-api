@@ -3,8 +3,8 @@ const { resourceNotFoundErrorObj, badRequestErrorObj, forbiddenAccessErrorObj } 
 
 const getCharacters = async (req, res) => {
     try {
-        const character = await Character.find({ owner: req.user._id });
-        res.json(character);
+        const characters = await Character.find({ owner: req.user._id });
+        res.json({ data: characters, count: characters.length });
     } catch (error) {
         res.status(400).json(badRequestErrorObj("obtaining characters", error));
     }
@@ -20,7 +20,7 @@ const getOneCharacter = async (req, res) => {
 
         res.json(ownCharacter);
     } catch (error) {
-        res.status(404).json( resourceNotFoundErrorObj("character"));
+        res.status(404).json(resourceNotFoundErrorObj("character"));
     }
 }
 
@@ -30,7 +30,7 @@ const createCharacter = async (req, res) => {
             ...req.body,
             owner: req.user._id
         });
-        res.status(201).json([{ message: 'Successfully created character.' }, { created: character }]);
+        res.status(201).json([{ message: 'Successfully created character.' }, { data: character }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("creating character", error));
     }
@@ -47,7 +47,7 @@ const updateCharacter = async (req, res) => {
         if (!character) {
             return res.status(404).json(resourceNotFoundErrorObj("character"));
         }
-        res.json([{ message: 'Successfully updated character.' }, { update: character }]);
+        res.json([{ message: 'Successfully updated character.' }, { data: character }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("updating character", error));
     }

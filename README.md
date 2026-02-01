@@ -11,20 +11,20 @@ CharaWik is a personal blog style wikipedia page for artists to keep track of th
 1.  Clone the repository or Download the ZIP file and extract the files.
 2.  Open the file in Visual Studio Code.
 3.  Open the Terminal using Ctrl + ~
-4.  `cd` into the directory 'backend' in the terminal. Like so:
-    `cd backend`
+4.  `cd` into the directory 'charawik-api-main' in the terminal. Like so:
+    `cd charawik-api-main`
 
     **Ensure NPM is is installed for the project to run:**
 
     inside the terminal window run `npm i` to install npm
 
-5.  Create a `.env` file in the root directory/folder ( backend ). Add the following to the file:
-    - Your personal connection string from [MongoDB](https://www.mongodb.com) in the following format `MONGO_URI=your_connection_string_goes_here/innovative-inc`.
+5.  Create a `.env` file in the root directory/folder ( charawik-api-main ). Add the following to the file:
+    - Your personal connection string from [MongoDB](https://www.mongodb.com) in the following format `MONGO_URI=your_connection_string_goes_here/charawik`.
     - A Secret Key in the following format `JWT_SECRET=yourSecretKeyGoesRightHere`
     - (Optional) A port number within the 3000s: `PORT=3000`
 6.  (Once NPM is indeed installed in the project file directory, you'll see a node modules folder) Run the project using `node server.js` in the terminal. You can also use npm run dev (Nodemon is installed)
 
-7.  You should see a message appear. Follow the link such as: "http://localhost:3000/" or "http://localhost:3001/" (when no port defined in .env)
+7.  You should see a message appear. Follow the link such as: "http://localhost:3000/" or "http://localhost:3020/" (when no port defined in .env)
 
 From here, you can test creating a new user or logging in as an existing user using software/Visual Studio extension such as Thunderclient or Postman or a simlar software/Visual Studio extension. You can also create characters and activities.
 

@@ -247,11 +247,13 @@ _For bodies of type Form-encode, simply make a token, chaaracter details, activi
 
 ### Useful resources
 
+[Store Image in Base64 in MongoDB Using MERN Stack | Daily Tuition](https://youtu.be/pfxd7L1kzio?si=Wn1iW4d-oH2a8YRE) - Guidance on what was necessary for the Schema structure.
+
 **PerScholas** | Modules 12 - 16 | All lessons.
 
-Tishana Trainor
+**Tishana Trainor** | Thank you both for your the guidance, education, patience, and kindness you provided for me and my cohort. We have become not only more knowledgable, but also grateful to have cross paths with you both. Fate provided us with the best instructors for Software Engineering. 🌼
 
-Bryan Santos
+**Bryan Santos** | Thank you both for your the guidance, education, patience, and kindness you provided for me and my cohort. We have become not only more knowledgable, but also grateful to have cross paths with you both. Fate provided us with the best instructors for Software Engineering. 🌼
 
 ## Author
 

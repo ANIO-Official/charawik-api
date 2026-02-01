@@ -1,6 +1,6 @@
 const Activity = require('../models/Activity')
 const Character = require('../models/Character')
-const {resourceNotFoundErrorObj, badRequestErrorObj, forbiddenAccessErrorObj} = require('../utils/errorhandling')
+const { resourceNotFoundErrorObj, badRequestErrorObj, forbiddenAccessErrorObj } = require('../utils/errorhandling')
 
 //=============Utils
 const checkCharacterOwnership = async (req, characterId) => {
@@ -74,7 +74,7 @@ const deleteActivity = async (req, res) => {
     try {
         const owned = await checkCharacterByProxy(req) //Check if activity's character is owned by user.
         if (!owned) {
-          return res.status(403).json(forbiddenAccessErrorObj("character"))
+            return res.status(403).json(forbiddenAccessErrorObj("character"))
         }
         const activity = await Activity.findByIdAndDelete(req.params.activityId);
         if (!activity) {

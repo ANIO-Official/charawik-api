@@ -14,7 +14,7 @@ const getOneCharacter = async (req, res) => {
 
         const ownCharacter = await Character.findOne({ _id: req.params.characterId, owner: req.user._id })
         if (!ownCharacter) {
-            return res.status(403).send("You are not authorized to view this character.")
+            return res.status(403).json( {message: "You are not authorized to view this character."})
         }
 
         res.json(ownCharacter);
@@ -40,7 +40,7 @@ const updateCharacter = async (req, res) => {
     try {
         const ownCharacter = await Character.findOne({ _id: req.params.characterId, owner: req.user._id })
         if (!ownCharacter) {
-            return res.status(403).send("You are not authorized to update this character.")
+            return res.status(403).json({message: "You are not authorized to update this character."})
         }
 
         const character = await Character.findByIdAndUpdate(req.params.characterId, req.body, { new: true });
@@ -57,7 +57,7 @@ const deleteCharacter = async (req, res) => {
     try {
         const ownCharacter = await Character.findOne({ _id: req.params.characterId, owner: req.user._id })
         if (!ownCharacter) {
-            return res.status(403).send("You are not authorized to delete this character.")
+            return res.status(403).json({message: "You are not authorized to delete this character."})
         }
         const character = await Character.findByIdAndDelete(req.params.characterId);
         if (!character) {

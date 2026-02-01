@@ -12,7 +12,7 @@ module.exports = {
     }
  
     if (!token) {
-      return res.status(401).json({ message: 'You are not have authorized access to view/update/delete this content.' });
+      return res.status(401).json({ message: 'You are not have authorized access to view/update/delete this content. You must be logged in.' });
     }
  
     try {

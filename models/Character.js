@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-// This is the model you will be modifying
 const characterSchema = new Schema({
   profileImage: {
     type: String,
@@ -30,6 +29,6 @@ const characterSchema = new Schema({
   }
 });
 
-const Character = model('Character', characterSchema);
+const Character = model('Character', characterSchema)
 
-module.exports = Character;
+module.exports = Character

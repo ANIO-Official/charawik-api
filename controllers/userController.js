@@ -61,7 +61,7 @@ const updateUserPicture = async (req, res) => { //Already logged in users
     if (!updatedUser) {
       return res.status(404).json(resourceNotFoundErrorObj("account"));
     }
-    res.json([{ message: 'Successfully updated account with new profile picture.' }, { data: updatedUser }]);
+    res.json([{ message: `Successfully updated ${updatedUser.username}'s account with new profile picture.` , profilePicture: updatedUser.profilePicture }]);
   } catch (error) {
     res.status(400).json(badRequestErrorObj("updating profile picture", error));
   }

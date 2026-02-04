@@ -4,7 +4,7 @@ const { resourceNotFoundErrorObj, badRequestErrorObj, forbiddenAccessErrorObj } 
 const getCharacters = async (req, res) => {
     try {
         const characters = await Character.find({ owner: req.user._id });
-        res.json([{ data: characters, count: characters.length }]);
+        res.json([{ characters: characters, count: characters.length }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("obtaining characters", error));
     }
@@ -18,7 +18,7 @@ const getOneCharacter = async (req, res) => {
             return res.status(403).json(forbiddenAccessErrorObj("character"))
         }
 
-        res.json(ownCharacter);
+        res.json([{ character: ownCharacter}]);
     } catch (error) {
         res.status(404).json(resourceNotFoundErrorObj("character"));
     }
@@ -30,7 +30,7 @@ const createCharacter = async (req, res) => {
             ...req.body,
             owner: req.user._id
         });
-        res.status(201).json([{ message: 'Successfully created character.' }, { data: character }]);
+        res.status(201).json([{ message: 'Successfully created character.' , character: character }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("creating character", error));
     }
@@ -47,7 +47,7 @@ const updateCharacter = async (req, res) => {
         if (!character) {
             return res.status(404).json(resourceNotFoundErrorObj("character"));
         }
-        res.json([{ message: 'Successfully updated character.' }, { data: character }]);
+        res.json([{ message: 'Successfully updated character.' , character: character }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("updating character", error));
     }
@@ -63,7 +63,7 @@ const deleteCharacter = async (req, res) => {
         if (!character) {
             return res.status(404).json(resourceNotFoundErrorObj("character"));
         }
-        res.json({ message: 'Character deleted!' });
+        res.json([{ message: 'Character deleted!' }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("deleting character", error));
     }

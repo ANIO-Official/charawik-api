@@ -25,7 +25,7 @@ const createActivity = async (req, res) => {
             ...req.body,
             character: req.params.characterId //set provided characterId params as assigned character
         });
-        res.status(201).json([{ message: 'Successfully created activity.' }, { data: activity }]);
+        res.status(201).json([{ message: `Successfully created activity for ${owned.name}. `, activity: activity }]);
     } catch (error) {
         console.error("[ Error Creating Activity ] ", error)
         res.status(400).json(badRequestErrorObj("creating activity", error));
@@ -38,7 +38,7 @@ const getActivities = async (req, res) => {
             return res.status(403).json(forbiddenAccessErrorObj("character"))
         }
         const activities = await Activity.find({ character: req.params.characterId }); //return multiple activities
-        return activities ? res.json({ data: activities, count: activities.length }) : error //Edge Case: Character match but no Activity match. Otherwise will return null as response.
+        return activities ? res.json([{ activities: activities, count: activities.length }]) : error //Edge Case: Character match but no Activity match. Otherwise will return null as response.
     } catch (error) {
         res.status(400).json(badRequestErrorObj("obtaining activities", error));
     }
@@ -50,7 +50,7 @@ const getOneActivity = async (req, res) => {
             return res.status(403).json(forbiddenAccessErrorObj("character"))
         }
         const activity = await Activity.findOne({ _id: req.params.activityId, character: req.params.characterId })
-        return activity ? res.json(activity) : error //Edge Case: Character match but no Activity match. Otherwise will return null as response.
+        return activity ? res.json([{activity: activity}]) : error //Edge Case: Character match but no Activity match. Otherwise will return null as response.
     } catch (error) {
         res.status(404).json(resourceNotFoundErrorObj("activity"));
     }
@@ -65,7 +65,7 @@ const editActivity = async (req, res) => {
         if (!activity) {
             res.status(404).json(resourceNotFoundErrorObj("activity"));
         }
-        res.json([{ message: 'Successfully updated activity.' }, { data: activity }]);
+        res.json([{ message: 'Successfully updated activity.' , activity: activity }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("editing activity", error));
     }
@@ -80,7 +80,7 @@ const deleteActivity = async (req, res) => {
         if (!activity) {
             res.status(404).json(resourceNotFoundErrorObj("activity"));
         }
-        res.json({ message: 'Activity deleted!' });
+        res.json([{ message: 'Activity deleted!' }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("deleting activity", error));
     }

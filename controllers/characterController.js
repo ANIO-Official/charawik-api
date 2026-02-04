@@ -4,7 +4,7 @@ const { resourceNotFoundErrorObj, badRequestErrorObj, forbiddenAccessErrorObj } 
 const getCharacters = async (req, res) => {
     try {
         const characters = await Character.find({ owner: req.user._id });
-        res.json({ data: characters, count: characters.length });
+        res.json([{ data: characters, count: characters.length }]);
     } catch (error) {
         res.status(400).json(badRequestErrorObj("obtaining characters", error));
     }

@@ -19,6 +19,9 @@ const userSchema = new Schema({
     required: [true, 'Password is required. Atleast 5 characters long.'],
     minlength: 5,
   },
+  profilePicture: {
+    type: String
+  }
 });
  
 // hash user password

@@ -34,6 +34,7 @@ From here, you can test creating a new user or logging in as an existing user us
 
 /api/users/register //Post/Create User
 /api/users/login //Post/Login Existing User
+/api/users/profilepicture // Put and Get Request for Accessing and editing user's profile picture.
 
 /api/characters // Get/Read All characters or Post/Create a new character. Must be the owner of the character.
 /api/characters/:characterId  // Get/Read, Put/Update, Delete characters a specific character. Must be the owner of the character.
@@ -45,7 +46,7 @@ From here, you can test creating a new user or logging in as an existing user us
 
 ---
 
-### Account Creation - POST Route Format -
+### Account Creation & Login - POST Route Format -
 
 To create a user using JSON body, following this format:
 
@@ -66,6 +67,25 @@ To login a user using JSON body, following this format:
 {
     "email": "bestCoolemail@gmail.com",
     "password": "b3tterP4ssword"
+}
+
+```
+### Access & Edit User Profile Picture - PUT & GET Route Format -
+*Both of these routes need authentication. A token must be provided. They use the same url and the put request profile picture must be a url string in order for it to display properly.*
+
+*URL example: http://localhost:3000/api/characters/profilepicture_*
+```JSON
+ //Edit Picture | PUT REQUEST
+{
+    "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
+    "profilePicture": "urlforimage.com/images/291738472130.png"
+}
+
+```
+```JSON
+ //Get Picture | GET REQUEST
+{
+    "token": "esfodijweijfi439584jjndmlm]e[r][p320403mkdfm]_3483msdlfiowe",
 }
 
 ```
